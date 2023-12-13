@@ -1,5 +1,8 @@
 package com.example.demo;
 
-public class HelloController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class HelloController {
+	
 }
