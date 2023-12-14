@@ -1,6 +1,6 @@
 package com.example.demo.board.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,6 @@ public class BoardlVO {
 	private Date writeDate;
 	private int readCount;
 	private int replyCount;
-	private int likeCount;
 	private long catergoryId;
 	private long userId;
 	private long masterId;
