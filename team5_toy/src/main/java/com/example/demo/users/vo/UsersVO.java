@@ -1,6 +1,6 @@
-package com.example.demo.user.vo;
+package com.example.demo.users.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,13 +9,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserVO {
+public class UsersVO {
 	private long userId;
-	private String id;
+	private String email;
 	private String password;
 	private String nickname;
 	private String name;
-	private String email;
+	private String role;
 	private String phoneNumber;
 	private Date registerDate;
 	
