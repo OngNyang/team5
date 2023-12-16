@@ -1,0 +1,56 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.reply.dao.ReplyDAO">
+
+    <resultMap id="replyResultMap" type="com.example.demo.reply.model.ReplyVO">
+        <id property="replyId" column="reply_id"/>
+        <result property="replyWritedate" column="reply_writedate"/>
+        <result property="replyContent" column="reply_content"/>
+        <result property="boardId" column="board_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="parentId" column="parent_id"/>
+    </resultMap>
+    
+<!--       <select id="selectAllGrade" resultMap="gradeResultMap">
+        <![CDATA[
+        SELECT
+            grade_id,
+            grade_name,
+            grade_order
+        FROM
+            grade
+        ]]>
+    </select> -->
+    
+
+    
+    
+
+    <select id="getRepliesByBoardId" resultMap="replyResultMap" parameterType="long">
+        SELECT * FROM reply WHERE board_id = #{boardId}
+    </select>
+
+    <select id="getReplyById" resultMap="replyResultMap" parameterType="long">
+        SELECT * FROM reply WHERE reply_id = #{replyId}
+    </select>
+
+    <insert id="createReply" parameterType="com.example.demo.reply.model.ReplyVO">
+        INSERT INTO reply (reply_writedate, reply_content, board_id, user_id, parent_id)
+        VALUES (#{replyWritedate}, #{replyContent}, #{boardId}, #{userId}, #{parentId})
+    </insert>
+
+	
+
+    <update id="updateReply" parameterType="com.example.demo.reply.model.ReplyVO">
+   		   
+        UPDATE reply
+        SET 
+            reply_content = #{replyContent},
+            user_id = #{userId}
+        WHERE reply_id = #{replyId}
+    </update>
+
+    <delete id="deleteReply" parameterType="long">
+        DELETE FROM reply WHERE reply_id = #{replyId}
+    </delete>
+
+</mapper>

@@ -1,6 +1,6 @@
-package com.example.demo.reply.vo;
+package com.example.demo.reply.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ReplyVo {
+public class ReplyVO {
     private long replyId;
     private Date replyWritedate;
     private String replyContent;
