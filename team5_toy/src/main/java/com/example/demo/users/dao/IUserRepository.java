@@ -1,5 +1,7 @@
 package com.example.demo.users.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import com.example.demo.users.dto.EditUserInfoDto;
@@ -14,4 +16,5 @@ public interface IUserRepository {
 	void updateUser(EditUserInfoDto user);
 	void deleteUser(String email);
 	String getPassword(String email);
+	List<UsersVO> getUserList();
 }

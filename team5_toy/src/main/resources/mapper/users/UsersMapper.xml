@@ -9,7 +9,16 @@
 		SELECT NVL(MAX(user_id),0) AS "userNo"
 		FROM users
 	]]>
-	</select>
+	</select>       
+	
+	<select id="getUserList" resultType="com.example.demo.users.model.UsersVO">
+	<![CDATA[
+		SELECT 
+			user_id AS userId, email, password, nickname, name, role, phone_number AS phoneNumber, register_date AS registerDate
+		FROM 
+			users 
+	]]>
+	</select>  
 
 	<insert id="registerUser" parameterType="com.example.demo.users.model.UsersVO">
 	<![CDATA[
@@ -23,7 +32,7 @@
 	<select id="selectUser" parameterType="string" resultType="com.example.demo.users.model.UsersVO">
 	<![CDATA[
 		SELECT 
-			user_id, email, password, nickname, name, role, phone_number, register_date
+			user_id AS userId, email, password, nickname, name, role, phone_number AS phoneNumber, register_date AS registerDate
 		FROM 
 			users 
 		WHERE email=#{email}
