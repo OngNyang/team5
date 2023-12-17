@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- <mapper namespace="com.example.myapp.member.dao.IMemberRepository"> -->
+<mapper namespace="com.example.demo.grade.dao.IGradeRepository">
+
+	<insert id="insertGrade" parameterType="com.example.demo.grade.model.GradeVO">
+	<![CDATA[
+		INSERT INTO 
+			grade (grade_id, grade_name, grade_order) 
+		VALUES 
+			(#{gradeId}, #{gradeName}, #{gradeOrder})
+	]]>
+	</insert>
+
+	<select id="selectGrade" parameterType="Long" resultType="com.example.demo.grade.model.GradeVO">
+	<![CDATA[
+		SELECT 
+			grade_id as gradeId,
+			grade_name as gradeName,
+			grade_order as gradeOrder
+		FROM 
+			grade 
+		WHERE grade_id=#{gradeId}
+	]]>
+	</select>
+	
+	
+    <select id="selectAllGrade" resultMap="gradeResultMap">
+        <![CDATA[
+        SELECT
+            grade_id,
+            grade_name,
+            grade_order
+        FROM
+            grade
+        ]]>
+    </select>
+    
+    <update id="updateGrade" parameterType="com.example.demo.grade.model.GradeVO" >
+		<![CDATA[
+			UPDATE GRADE
+			SET 
+				grade_name=#{gradeName}, 
+				grade_order=#{gradeOrder} 
+			WHERE 
+				grade_id=#{gradeId} 
+		]]>
+	</update>
+	
+	
+	<delete id="deleteGrade" parameterType="com.example.demo.grade.model.GradeVO">
+		<![CDATA[
+			DELETE FROM
+				GRADE 
+			WHERE
+				grade_id=#{gradeId}
+		]]>
+	</delete>
+	
+
+
+    <resultMap id="gradeResultMap" type="com.example.demo.grade.model.GradeVO">
+        <id property="gradeId" column="grade_id"/>
+        <result property="gradeName" column="grade_name"/>
+        <result property="gradeOrder" column="grade_order"/>
+    </resultMap>
+	
+	
+	<!-- <update id="updateMember" parameterType="com.example.myapp.member.model.Member">
+	<![CDATA[
+		UPDATE MEMBER
+		SET 
+			name=#{name}, password=#{password}, phone=#{phone}, email=#{email} 
+		WHERE 
+			userid=#{userid}
+	]]>
+	</update>
+	
+	<delete id="deleteMember" parameterType="com.example.myapp.member.model.Member">
+	<![CDATA[
+		DELETE FROM
+			member 
+		WHERE
+			userid=#{userid} AND password=#{password}
+	]]>
+	</delete>
+	
+	<select id="getPassword" parameterType="string" resultType="string">
+	<![CDATA[
+		SELECT
+			password
+		FROM
+			member
+		WHERE userid=#{userid}
+	]]>
+	</select> -->
+	
+</mapper>
