@@ -5,10 +5,13 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.Data;
+//
+//@Getter
+//@Setter
+//@ToString
 
-@Getter
-@Setter
-@ToString
+@Data
 public class ReplyVO {
     private long replyId;
     private Date replyWritedate;
