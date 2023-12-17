@@ -1,6 +1,8 @@
 package com.example.demo.users.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.users.dao.IUserRepository;
 import com.example.demo.users.dto.UserEmailPwDTO;
+import com.example.demo.users.dto.UserInfoDto;
 import com.example.demo.users.dto.EditUserDto;
-import com.example.demo.users.dto.LoginResultDto;
 import com.example.demo.users.model.UsersVO;
 
 @Service
@@ -77,5 +79,15 @@ public class UserService implements IUserService {
 		UsersVO user = selectUser(loginDto.getEmail());
 
 		return passwordEncoder.matches(loginDto.getPassword(), user.getPassword());
+	}
+
+	@Override
+	public List<UserInfoDto> getUserList() {
+		List<UsersVO> list = userDao.getUserList();
+		List<UserInfoDto> result = new ArrayList<>();
+		for (UsersVO user : list) {
+			result.add(new UserInfoDto(user.getEmail(), user.getNickname(), user.getName(), user.getPhoneNumber(), user.getRegisterDate()));
+		}
+		return result;
 	}
 }
