@@ -1,4 +1,4 @@
-package com.example.demo.users.vo;
+package com.example.demo.users.model;
 
 import java.util.Date;
 
