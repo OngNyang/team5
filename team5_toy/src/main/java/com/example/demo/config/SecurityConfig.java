@@ -16,19 +16,26 @@ public class SecurityConfig {
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf((csrfConfig) -> csrfConfig.disable());
-	      http.formLogin((formLogin) -> formLogin
-	            .loginPage("/user/login")
-	            .usernameParameter("email")
-	            .defaultSuccessUrl("/user/login/result"))
-	            .logout(logout -> logout
-	                  .logoutUrl("/user/logout")
-	                  .logoutSuccessUrl("/user/logout/result")
-	                  .invalidateHttpSession(true));
-		http.authorizeHttpRequests()
-			.requestMatchers("/user").hasAnyRole("USER", "ADMIN")
-			.requestMatchers("/**", "/css/**", "/js/**", "/images/**").permitAll()
-			.requestMatchers("/user/register", "/user/login").permitAll();
+
+		http.authorizeRequests()
+	    .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
+	    .requestMatchers("/board").hasAnyRole("USER", "ADMIN")
+	    .requestMatchers("/grade").hasAnyRole("USER", "ADMIN")
+	    .requestMatchers("/likes").hasAnyRole("USER", "ADMIN")
+	    .requestMatchers("/**", "/css/**", "/js/**", "/images/**").permitAll()
+	    .requestMatchers("/user/register", "/user/login").permitAll()
+	    .and()
+	    .formLogin()
+	        .loginPage("/user/login")
+	        .usernameParameter("email")
+	        .defaultSuccessUrl("/user/login/result")
+	    .and()
+	    .logout()
+	        .logoutUrl("/user/logout")
+	        .logoutSuccessUrl("/user/logout/result")
+	        .invalidateHttpSession(true)
+	    .and()
+	    .csrf().disable();
 		return http.build();
 	}
 	
